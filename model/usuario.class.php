@@ -84,6 +84,31 @@ class Usuario {
         return null;
     }
 
+    public static function verificarLogin(string $email, string $password): ?Usuario {
+        $sql = "SELECT * FROM usuarios WHERE email = ?";
+        $stmt = Database::getInstance()->getConnection()->prepare($sql);
+        $stmt->execute([$email]);
+        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        if ($resultado) {
+            if ($password === $resultado['password']) {
+                $rol = null;
+                if (!empty($resultado['rol_id'])) {
+                    $rol = Rol::obtenerPorId((int)$resultado['rol_id']);
+                }
+                return new Usuario(
+                    (int)$resultado['id'],
+                    $resultado['nombre'],
+                    $resultado['email'],
+                    $resultado['password'],
+                    $rol
+                );
+            }
+        }
+        return null;
+    }
+    
+
 
     // GETTERS & SETTERS
 
