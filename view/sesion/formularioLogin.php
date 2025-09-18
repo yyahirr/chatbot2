@@ -5,7 +5,7 @@
     <title>Login</title>
   </head>
   <body>
-    <form action="/login" method="POST" autocomplete="on">
+  <form action="../../controller/usuario.controller.php" method="POST" autocomplete="on">
       <div>
         <input type="email" name="email" placeholder="Email" required/>
       </div>

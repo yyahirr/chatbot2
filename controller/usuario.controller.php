@@ -24,31 +24,20 @@ if ($result) {
     print "<br>Error al realizar la operación.</b><br>";
 }
 
-print "<a href='../formularios/listarUsuario.php'>Volver a la lista de usuarios</a>";
+print "<a href='../view/usuario/listarUsuario.php'>Volver a la lista de usuarios</a>";
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['operacion'])) {
+    $email = $_POST['email'] ?? '';
+    $password = $_POST['contrasena'] ?? '';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = isset($_POST['email']) ? trim($_POST['email']) : null;
-    $password = isset($_POST['contrasena']) ? trim($_POST['contrasena']) : null;
+    $usuario = Usuario::verificarLogin($email, $password);
 
-    if ($email && $password) {
-        // Llamamos al método de la clase Usuario
-        $usuario = Usuario::verificarLogin($email, $password);
-
-        if ($usuario) {
-            // Guardamos datos en sesión
-            $_SESSION['usuario_id'] = $usuario->getId();
-            $_SESSION['usuario_nombre'] = $usuario->getNombre();
-            $_SESSION['usuario_email'] = $usuario->getEmail();
-            $_SESSION['usuario_rol'] = $usuario->getRol() ? $usuario->getRol()->getId() : null;
-
-            // Redirigir al panel o página principal
-            header("Location: ../view/sesion/formularioLogin.php");
-            exit;
-        } else {
-            $error = "Email o contraseña incorrectos.";
-        }
+    if ($usuario) {
+        $_SESSION['usuario'] = $usuario->getId();
+        header('Location: ../index.php');
+        exit;
     } else {
-        $error = "Debes completar todos los campos.";
+        header('Location: ../view/sesion/formularioLogin.php?error=1');
+        exit;
     }
 }
 ?>
