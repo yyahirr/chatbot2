@@ -85,9 +85,9 @@ class Usuario {
     }
 
     public static function verificarLogin(string $email, string $password): ?Usuario {
-        $sql = "SELECT * FROM usuarios WHERE email = ?";
+        $sql = "SELECT * FROM usuarios WHERE email = ? AND password = ?";
         $stmt = Database::getInstance()->getConnection()->prepare($sql);
-        $stmt->execute([$email]);
+        $stmt->execute([$email, $password]);
         $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
     
         if ($resultado) {
