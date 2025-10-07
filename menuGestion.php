@@ -25,6 +25,13 @@
             <h3 class="menu-subtitle">Conversación</h3>
             <a class="menu-link" href="view/conversacion/listarConversacion.php">Listar conversaciones</a>
         </article>
+        <article class="menu-section">
+            <h3 class="menu-subtitle">Usuarios & roles</h3>
+            <a class="menu-link" href="view/usuario/formAltaUsuario.php">Añadir usuario</a>
+            <a class="menu-link" href="view/usuario/listarUsuario.php">Listar usuarios</a>
+            <a class="menu-link" href="view/rol/formAltaRol.php">Añadir rol</a>
+            <a class="menu-link" href="view/rol/listarRol.php">Listar roles</a>
+        </article>
     </main>
     <footer>
         <a class="chatbotVolver"href="index.php" class="menu-back">Volver al Chatbot</a>

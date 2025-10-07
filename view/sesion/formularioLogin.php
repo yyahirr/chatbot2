@@ -24,3 +24,5 @@
         <div class="login-actions">
           <button type="submit">Ingresar</button>
         </div>
+        <a href="../../index.php">Ingresar como invitado</a>
+        

@@ -1,6 +1,6 @@
 <?php
 include_once 'model/database.class.php';
-include_once 'model/conversacion.class.php'; // Incluís la clase para guardar
+include_once 'model/conversacion.class.php';
 
 if (isset($_POST['text'])) {
     $preguntaUsuario = trim($_POST['text']);
@@ -20,12 +20,10 @@ if (isset($_POST['text'])) {
         $respuestaBot = $row['respuesta'];
     }
 
-    // Guardar conversación en la base de datos
     $fechaHora = date('Y-m-d H:i:s');
     $conversacion = new Conversaciones(null, $preguntaUsuario, $respuestaBot, $fechaHora);
     $conversacion->guardar();
 
-    // Devolver respuesta al frontend
     echo $respuestaBot;
 }
 ?>

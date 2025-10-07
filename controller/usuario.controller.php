@@ -24,6 +24,8 @@ if ($result) {
     print "<br>Error al realizar la operación.</b><br>";
 }
 
+
+//
 print "<a href='../view/usuario/listarUsuario.php'>Volver a la lista de usuarios</a>";
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['operacion'])) {
     $email = $_POST['email'] ?? '';
@@ -32,8 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['operacion'])) {
     $usuario = Usuario::verificarLogin($email, $password);
 
     if ($usuario) {
-        $_SESSION['usuario'] = $usuario->getId();
-        header('Location: ../index.php');
+        $_SESSION['admin'] = $usuario->getId();
+        header('Location: ../admin.php');
         exit;
     } else {
         header('Location: ../view/sesion/formularioLogin.php?error=1');

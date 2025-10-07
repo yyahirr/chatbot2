@@ -84,6 +84,7 @@ class Usuario {
         return null;
     }
 
+    //CAP
     public static function verificarLogin(string $email, string $password): ?Usuario {
         $sql = "SELECT * FROM usuarios WHERE email = ? AND password = ?";
         $stmt = Database::getInstance()->getConnection()->prepare($sql);
@@ -108,8 +109,7 @@ class Usuario {
         return null;
     }
     
-
-
+    
     // GETTERS & SETTERS
 
     public function getId(){
