@@ -165,3 +165,46 @@ nav a:hover, nav span {
 .input-data button:hover {
     background: #1a2533;
 }
+
+
+header {
+    background: #112736;
+    color: #fff;
+    padding: 24px 0 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    position: relative; 
+}
+
+.logout-link {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+header svg {
+    pointer-events: auto;
+    display: block;
+}
+
+.logout-link svg {
+    color: #fff;
+    transition: color .18s ease, transform .18s ease;
+    display: block;
+}
+
+.logout-link:hover svg,
+.logout-link:focus svg,
+.logout-link:focus-visible svg {
+    color: #9dff00; /* color al pasar el mouse (ajusta a tu preferencia) */
+    transform: scale(1.05);
+}

@@ -27,7 +27,7 @@
         </article>
     </main>
     <footer>
-        <a class="chatbotVolver"href="index.html" class="menu-back">Volver al Chatbot</a>
+        <a class="chatbotVolver"href="index.php" class="menu-back">Volver al Chatbot</a>
     </footer>
 </body>
 </html>
