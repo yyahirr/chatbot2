@@ -1,11 +1,13 @@
+<!DOCTYPE html>
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Gastón Chatbot</title>
     <link rel="stylesheet" href="css/diseñoIndex.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="scripts/enviarDatos.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous" defer></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="" crossorigin="anonymous" defer></script>
+    <script src="scripts/enviarDatos.js" defer></script>
 </head>
 
 <body>
@@ -29,7 +31,7 @@
             </div>
             <div class="typing-field">
                 <div class="input-data">
-                    <input id="data" type="text" placeholder="Escribe algo aquí.." required>
+                    <label input id="data" type="text" placeholder="Escribe algo aquí.." required></label>
                     <button id="send-btn">Enviar</button>
                 </div>
             </div>
