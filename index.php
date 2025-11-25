@@ -25,16 +25,24 @@
             <div class="title">Chatea con Gastón</div>
             <div class="form">
                 <div class="bot-inbox inbox">
-                    <div class="icon"><i class="fas fa-robot"></i></div>
+                    <div class="icon">
+                        <img src="img/iconitodog.png" alt="Icono de Gastón" width="40" height="40">
+                    </div>
                     <div class="msg-header"><p>Hola, soy Gastón, ¿cómo puedo ayudarte?</p></div>
                 </div>
             </div>
             <div class="typing-field">
                 <div class="input-data">
-                    <label input id="data" type="text" placeholder="Escribe algo aquí.." required></label>
+                    <label><input id="data" type="text" placeholder="Escribe algo aquí.." required/></label>
                     <button id="send-btn">Enviar</button>
                 </div>
             </div>
         </div>
     </main>
+    <footer>
+        <div class="about">
+            <h2>Acerca de</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.</p>
+        /div>
+    </footer>
 </body>

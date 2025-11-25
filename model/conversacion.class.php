@@ -17,11 +17,10 @@ class Conversaciones {
     }
 
     public function guardar() {
-        $sql="INSERT INTO conversaciones (pregunta_usuario, respuesta_bot, fecha_hora) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO conversaciones (pregunta_usuario, respuesta_bot, fecha_hora) VALUES (?, ?, ?)";
         $stmt = $this->conexion->prepare($sql);
         return $stmt->execute([$this->pregunta_usuario, $this->respuesta_bot, $this->fecha_hora]);
     }
-
 
     public static function obtenerTodas() {
         $sql = "SELECT * from conversaciones";
@@ -29,6 +28,7 @@ class Conversaciones {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
     public static function obtenerPorId(?int $id) {
         $sql = "SELECT * FROM conversaciones WHERE id = ?";
         $stmt = Database::GetInstance()->GetConnection()->prepare($sql);
@@ -36,33 +36,38 @@ class Conversaciones {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-
     //GETTERS & SETTERS
 
-    public function getId(){
+    public function getId() {
         return $this->id;
     }
-    public function getPreguntaUsuario(){
+
+    public function getPreguntaUsuario() {
         return $this->pregunta_usuario;
     }
-    public function getRespuestaBot(){
+
+    public function getRespuestaBot() {
         return $this->respuesta_bot;
     }
-    public function getFechaHora(){
+
+    public function getFechaHora() {
         return $this->fecha_hora;
     }
 
-    public function setId(?int $id){
+    public function setId(?int $id) {
         $this->id = $id;
-    }
-    public function setPreguntaUsuario(?string $pregunta_usuario){
-        $this->id = $id;
-    }
-    public function setRespuestaBot(?string $respuesta_bot){
-        $this->id = $id;
-    }
-    public function setFechaHora(?string $fecha_hora){
-        $this->fecha_hora = $fecha_hora;
     }
 
+    public function setPreguntaUsuario(?string $pregunta_usuario) {
+        $this->pregunta_usuario = $pregunta_usuario;
+    }
+
+    public function setRespuestaBot(?string $respuesta_bot) {
+        $this->respuesta_bot = $respuesta_bot;
+    }
+
+    public function setFechaHora(?string $fecha_hora) {
+        $this->fecha_hora = $fecha_hora;
+    }
 }
+?>

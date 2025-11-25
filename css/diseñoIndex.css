@@ -107,13 +107,19 @@ nav a:hover, nav span {
 .icon {
     width: 40px;
     height: 40px;
-    background-image: url("https://i.imgur.com/9qY1EMo.png");
-    background-size: cover;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 10px;
+}
+
+.icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
 }
 
 .msg-header {
@@ -207,4 +213,24 @@ header svg {
 .logout-link:focus-visible svg {
     color: #9dff00; /* color al pasar el mouse (ajusta a tu preferencia) */
     transform: scale(1.05);
+}
+footer {
+    margin-top: auto;
+    padding: 12px 18px;
+    color: #fff;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    text-align: center;
+    background: transparent;
+}
+
+footer .about h2 {
+    font-size: 1rem;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+footer .about p {
+    font-size: 0.95rem;
+    opacity: 0.95;
+    margin: 0;
 }
