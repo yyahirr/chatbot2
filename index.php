@@ -42,7 +42,9 @@
     <footer>
         <div class="about">
             <h2>Acerca de</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.</p>
-        /div>
+            <p>
+                Gastón es un chatbot enfocado en la solución de problemas informáticos.
+            </p>
+        </div>
     </footer>
 </body>
