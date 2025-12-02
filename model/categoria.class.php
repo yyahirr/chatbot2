@@ -27,10 +27,15 @@ class Categoria {
         return $stmt->execute([$this->nombre, $this->id]);
     }
 
-    public function eliminar(?int $id) {
+    public function eliminar() {
         $sql = "DELETE FROM categoria WHERE id = ?";
         $stmt = $this->conexion->prepare($sql);
-        return $stmt->execute([$this->id]);
+        try {
+            return $stmt->execute([$this->id]);
+        } catch (PDOException $e) {
+            error_log('Categoria::eliminar error: ' . $e->getMessage());
+            return false;
+        }
     }
 
     public static function obtenerTodas() {
@@ -39,11 +44,16 @@ class Categoria {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
     public static function obtenerPorId(?int $id) {
         $sql = "SELECT * FROM categoria WHERE id = ?";
         $stmt = Database::getInstance()->getConnection()->prepare($sql);
         $stmt->execute([$id]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($resultado) {
+            return new Categoria((int)$resultado['id'], $resultado['nombre']);
+        }
+        return null;
     }
 
 
@@ -63,3 +73,4 @@ class Categoria {
         $this->id = $id;
     }
 }
+?>

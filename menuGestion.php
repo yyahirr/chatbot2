@@ -15,6 +15,8 @@
             <h3 class="menu-subtitle">Preguntas</h3>
             <a class="menu-link" href="view/pregunta/listarPregunta.php">Listar preguntas</a>
             <a class="menu-link" href="view/pregunta/formAltaPregunta.php">Añadir pregunta</a>
+            <a class="menu-link" href="view/categoria/formAltaCategoria.php">Añadir categoria</a>
+            <a class="menu-link" href="view/categoria/listarCategoria.php">Listar categoria</a>
         </article>
         <article class="menu-section">
             <h3 class="menu-subtitle">Respuestas</h3>

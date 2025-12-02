@@ -2,17 +2,23 @@
 include ('../model/pregunta.class.php');
 
 $operacion = isset($_POST['operacion']) ? $_POST['operacion'] : null;
-$result = null;
+$result = false;
 
 if ($operacion == "guardar") {
-    $pregunta = new Preguntas(null, $_POST['pregunta'], $_POST['categoria_id']);
+    $preguntaTexto = isset($_POST['pregunta']) ? $_POST['pregunta'] : '';
+    $categoria = !empty($_POST['categoria_id']) ? new Categoria((int)$_POST['categoria_id']) : null;
+    $pregunta = new Preguntas(null, $preguntaTexto, $categoria);
     $result = $pregunta->guardar();
 } elseif ($operacion == "actualizar") {
-    $pregunta = new Preguntas($_POST['id'], $_POST['pregunta'], $_POST['categoria_id']);
+    $id = isset($_POST['id']) ? (int)$_POST['id'] : null;
+    $preguntaTexto = isset($_POST['pregunta']) ? $_POST['pregunta'] : '';
+    $categoria = !empty($_POST['categoria_id']) ? new Categoria((int)$_POST['categoria_id']) : null;
+    $pregunta = new Preguntas($id, $preguntaTexto, $categoria);
     $result = $pregunta->actualizar();
 } elseif ($operacion == "eliminar") {
-    $pregunta = new Preguntas($_POST['id'], null, null);
-    $result = $pregunta->eliminar($_POST['id']);
+    $id = isset($_POST['id']) ? (int)$_POST['id'] : null;
+    $pregunta = new Preguntas($id, '', null);
+    $result = $pregunta->eliminar();
 }
 
 if ($result) {

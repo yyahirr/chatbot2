@@ -5,14 +5,23 @@ $operacion = isset($_POST['operacion']) ? $_POST['operacion'] : null; // captura
 $result = null; // inicializa la variable de resultado
 
 if ($operacion == "guardar") {
-    $categoria = new Categoria(null, $_POST['nombre']);
+    $nombre = isset($_POST['nombre']) ? trim($_POST['nombre']) : '';
+    $categoria = new Categoria(null, $nombre);
     $result = $categoria->guardar();
 } elseif ($operacion == "actualizar") {
-    $categoria = new Categoria($_POST['id'], $_POST['nombre']);
+    $id = isset($_POST['id']) ? (int)$_POST['id'] : null;
+    $nombre = isset($_POST['nombre']) ? trim($_POST['nombre']) : '';
+    $categoria = new Categoria($id, $nombre);
     $result = $categoria->actualizar();
 } elseif ($operacion == "eliminar") {
-    $categoria = new Categoria($_POST['id'], null);
-    $result = $categoria->eliminar($_POST['id']);
+    $id = isset($_POST['id']) ? (int)$_POST['id'] : null;
+    if ($id && $id > 0) {
+        $categoria = new Categoria($id, null);
+        // ahora eliminar() no recibe parámetros, usa $this->id internamente
+        $result = $categoria->eliminar();
+    } else {
+        $result = false;
+    }
 }
 
 if ($result) {

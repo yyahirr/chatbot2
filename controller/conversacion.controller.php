@@ -11,6 +11,7 @@ if ($operacion == "guardar") {
 
     $conversacion = new Conversaciones(null, $preguntaUsuario, $respuestaBot, $fechaHora);
     $result = $conversacion->guardar();
+}
 
 if ($result) {
     echo "<br>Operación realizada con éxito.<br>";

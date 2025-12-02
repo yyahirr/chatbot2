@@ -74,17 +74,12 @@ class Usuario {
                 $rol = Rol::obtenerPorId((int)$resultado['rol_id']);
             }
             return new Usuario(
-                (int)$resultado['id'],
-                $resultado['nombre'],
-                $resultado['email'],
-                $resultado['password'],
-                $rol
+                (int)$resultado['id'], $resultado['nombre'], $resultado['email'], $resultado['password'], $rol
             );
         }
         return null;
     }
 
-    //CAP
     public static function verificarLogin(string $email, string $password): ?Usuario {
         $sql = "SELECT * FROM usuarios WHERE email = ? AND password = ?";
         $stmt = Database::getInstance()->getConnection()->prepare($sql);
@@ -98,11 +93,7 @@ class Usuario {
                     $rol = Rol::obtenerPorId((int)$resultado['rol_id']);
                 }
                 return new Usuario(
-                    (int)$resultado['id'],
-                    $resultado['nombre'],
-                    $resultado['email'],
-                    $resultado['password'],
-                    $rol
+                    (int)$resultado['id'], $resultado['nombre'], $resultado['email'], $resultado['password'], $rol
                 );
             }
         }

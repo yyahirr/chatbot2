@@ -5,13 +5,13 @@ include_once 'pregunta.class.php';
 class Respuesta {
     private ?int $id;
     private ?string $respuesta;
-    private $pregunta_id;
+    private Preguntas $pregunta;
     private $conexion;
 
-    public function __construct(?int $id = null, ?string $respuesta = null, $pregunta_id = null) {
+    public function __construct(?int $id = null, ?string $respuesta = null, Preguntas $pregunta = null) {
         $this->id = $id;
         $this->respuesta = $respuesta;
-        $this->pregunta_id = $pregunta_id;
+        $this->pregunta = $pregunta;
         $this->conexion = Database::getInstance()->getConnection();
     }
     public function guardar() {
@@ -26,7 +26,7 @@ class Respuesta {
         return $stmt->execute([$this->respuesta, $this->pregunta_id, $this->id]);
     }
 
-    public function eliminar(?int $id) {
+    public function eliminar() {
         $sql = "DELETE FROM respuesta WHERE id = ?";
         $stmt = $this->conexion->prepare($sql);
         return $stmt->execute([$id]);
@@ -44,10 +44,15 @@ class Respuesta {
         $stmt = Database::getInstance()->getConnection()->prepare($sql);
         $stmt->execute([$id]);
         $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        if ($resultado){
-            return new Respuesta((int)$resultado[0]['id'], $resultado[0]['respuesta']);
+        if($resultado){
+            $pregunta = null;
+            if (!empty($resultado['pregunta_id'])) {
+                $pregunta = Preguntas::obtenerPorId((int)$resultado['pregunta_id']);
+            }
+            return new Preguntas((int)$resultado['id'], $resultado['pregunta']);
         }
         return null;
+
     }
 
 

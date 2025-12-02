@@ -32,17 +32,6 @@ CREATE TABLE `categoria` (
   `nombre` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `categoria`
---
-
-INSERT INTO `categoria` (`id`, `nombre`) VALUES
-(1, 'Sistemas Operativos'),
-(2, 'Conectividad'),
-(3, 'Hardware'),
-(4, 'Software'),
-(5, 'Seguridad');
-
 -- --------------------------------------------------------
 
 --
@@ -68,16 +57,6 @@ CREATE TABLE `preguntas` (
   `categoria_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `preguntas`
---
-
-INSERT INTO `preguntas` (`id`, `pregunta`, `categoria_id`) VALUES
-(1, '¿Cuál es la función principal de un sistema operativo?', 1),
-(2, '¿Qué dispositivo se utiliza para conectar varias computadoras en una red local?', 2),
-(3, '¿Qué componente se encarga de procesar la información en una computadora?', 3),
-(4, '¿Qué tipo de software es Microsoft Word?', 4),
-(5, '¿Qué es un antivirus?', 5);
 
 -- --------------------------------------------------------
 
@@ -91,16 +70,6 @@ CREATE TABLE `respuesta` (
   `pregunta_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `respuesta`
---
-
-INSERT INTO `respuesta` (`id`, `respuesta`, `pregunta_id`) VALUES
-(1, 'Administrar los recursos del hardware y permitir que el usuario interactúe con la computadora.', 1),
-(2, 'El switch.', 2),
-(3, 'El procesador o CPU.', 3),
-(4, 'Es un software de aplicación', 4),
-(5, 'Es un programa que detecta y elimina software malicioso en tu sistema.', 5);
 
 -- --------------------------------------------------------
 
