@@ -53,7 +53,7 @@ nav a:hover, nav span {
     background: #fff;
     border-radius: 16px;
     box-shadow: 0 4px 24px rgba(44,62,80,0.08);
-    width: 370px;
+    width: 420px;
     max-width: 95vw;
     margin: 40px auto;
     display: flex;
@@ -125,7 +125,7 @@ nav a:hover, nav span {
 .msg-header {
     border-radius: 12px;
     padding: 12px 18px;
-    max-width: 220px;
+    max-width: 280px;
     font-size: 1rem;
     box-shadow: 0 1px 4px rgba(44,62,80,0.04);
 }
@@ -170,6 +170,52 @@ nav a:hover, nav span {
 
 .input-data button:hover {
     background: #1a2533;
+}
+
+/* Voice button specific styling */
+.input-data #voice-btn {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border-radius: 50%;
+    background: #fff;
+    color: #e53e3e; /* icon color: red */
+    border: 1px solid #d1d5db;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 4px rgba(44,62,80,0.06);
+    transition: background .15s, transform .12s, color .15s, border-color .15s;
+}
+
+.input-data #voice-btn:hover {
+    transform: scale(1.02);
+}
+
+.input-data #voice-btn.listening {
+    background: #e53e3e;
+    color: #fff;
+    border-color: #e53e3e;
+    box-shadow: 0 6px 18px rgba(229,62,62,0.18);
+}
+
+/* Ensure inline SVG uses currentColor so it follows the button color */
+.input-data #voice-btn svg {
+    width: 16px;
+    height: 16px;
+    display: block;
+    fill: currentColor;
+}
+
+/* Slightly smaller send button so both fit nicely */
+.input-data #send-btn {
+    padding: 10px 16px;
+}
+
+@media (max-width: 480px) {
+    .wrapper { width: 95vw; }
+    .msg-header { max-width: 60vw; }
+    .input-data #voice-btn { width: 36px; height: 36px; }
 }
 
 

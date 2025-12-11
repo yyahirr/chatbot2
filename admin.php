@@ -14,6 +14,7 @@ if (!isset($_SESSION['admin'])) {
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="scripts/enviarDatos.js"></script>
+    <script src="scripts/voz.js"></script>
 </head>
 
 <body>
@@ -35,13 +36,21 @@ if (!isset($_SESSION['admin'])) {
             <div class="title">Chatea con Gastón</div>
             <div class="form">
                 <div class="bot-inbox inbox">
-                    <div class="icon"><i class="fas fa-robot"></i></div>
+                    <div class="icon">
+                        <img src="img/iconitodog.png" alt="Icono de Gastón" width="40" height="40">
+                    </div>
                     <div class="msg-header"><p>Hola, soy Gastón, ¿cómo puedo ayudarte?</p></div>
                 </div>
             </div>
             <div class="typing-field">
                 <div class="input-data">
-                    <input id="data" type="text" placeholder="Escribe algo aquí.." required>
+                                        <input id="data" type="text" placeholder="Escribe algo aquí.." required>
+                                        <button id="voice-btn" type="button" title="Activar voz">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mic" viewBox="0 0 16 16">
+                                                    <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5"/>
+                                                    <path d="M10 8a2 2 0 1 1-4 0V3a2 2 0 1 1 4 0zM8 0a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V3a3 3 0 0 0-3-3"/>
+                                                </svg>
+                                        </button>
                     <button id="send-btn">Enviar</button>
                 </div>
             </div>
