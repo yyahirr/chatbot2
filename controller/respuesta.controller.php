@@ -15,11 +15,7 @@ if ($operacion == "guardar") {
     $result = $respuesta->eliminar($_POST['id']);
 }
 
-if ($result) {
-    print "<br>Operación realizada con éxito.</b><br>";
-} else {
-    print "<br>Error al realizar la operación.</b><br>";
-}
-print "<a href='../view/respuesta/listarRespuesta.php'>Volver a la lista de respuestas</a>";
-
+include_once __DIR__ . '/response.helper.php';
+$message = $result ? 'Operación realizada con éxito.' : 'Error al realizar la operación.';
+renderResponsePage((bool)$result, $message, '../view/respuesta/listarRespuesta.php');
 ?>

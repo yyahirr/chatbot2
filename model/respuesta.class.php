@@ -5,10 +5,10 @@ include_once 'pregunta.class.php';
 class Respuesta {
     private ?int $id;
     private ?string $respuesta;
-    private Preguntas $pregunta;
+    private ?Preguntas $pregunta;
     private $conexion;
 
-    public function __construct(?int $id = null, ?string $respuesta = null, Preguntas $pregunta = null) {
+    public function __construct(?int $id = null, ?string $respuesta = null, ?Preguntas $pregunta = null) {
         $this->id = $id;
         $this->respuesta = $respuesta;
         $this->pregunta = $pregunta;

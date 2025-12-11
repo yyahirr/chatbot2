@@ -1,6 +1,5 @@
 <?php
 include_once("../model/conversacion.class.php");
-
 $operacion = isset($_POST['operacion']) ? $_POST['operacion'] : null;
 $result = null;
 
@@ -13,12 +12,7 @@ if ($operacion == "guardar") {
     $result = $conversacion->guardar();
 }
 
-if ($result) {
-    echo "<br>Operación realizada con éxito.<br>";
-} else {
-    echo "<br>Error al realizar la operación.<br>";
-}
-
-
-echo "<a href='../view/conversacion/listarConversacion.php'>Volver a la lista de conversaciones</a>";
+include_once __DIR__ . '/response.helper.php';
+$message = $result ? 'Operación realizada con éxito.' : 'Error al realizar la operación.';
+renderResponsePage((bool)$result, $message, '../view/conversacion/listarConversacion.php');
 ?>
