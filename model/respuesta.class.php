@@ -6,14 +6,23 @@ class Respuesta {
     private ?int $id;
     private ?string $respuesta;
     private ?Preguntas $pregunta;
+    private ?int $pregunta_id;
     private $conexion;
 
-    public function __construct(?int $id = null, ?string $respuesta = null, ?Preguntas $pregunta = null) {
+    public function __construct(?int $id = null, ?string $respuesta = null, $pregunta = null) {
         $this->id = $id;
         $this->respuesta = $respuesta;
-        $this->pregunta = $pregunta;
         $this->conexion = Database::getInstance()->getConnection();
+
+        if ($pregunta instanceof Preguntas) {
+            $this->pregunta = $pregunta;
+            $this->pregunta_id = $pregunta->getId();
+        } else {
+            $this->pregunta = null;
+            $this->pregunta_id = is_numeric($pregunta) ? (int)$pregunta : null;
+        }
     }
+
     public function guardar() {
         $sql = "INSERT INTO respuesta (respuesta, pregunta_id) VALUES (?, ?)";
         $stmt = $this->conexion->prepare($sql);
@@ -29,9 +38,8 @@ class Respuesta {
     public function eliminar() {
         $sql = "DELETE FROM respuesta WHERE id = ?";
         $stmt = $this->conexion->prepare($sql);
-        return $stmt->execute([$id]);
+        return $stmt->execute([$this->id]);
     }
-
 
     public static function obtenerTodas() {
         $sql = "SELECT * from respuesta";
@@ -39,35 +47,38 @@ class Respuesta {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
     public static function obtenerPorId(?int $id) {
         $sql = "SELECT * FROM respuesta WHERE id = ?";
         $stmt = Database::getInstance()->getConnection()->prepare($sql);
         $stmt->execute([$id]);
-        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        if($resultado){
+        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($resultado) {
             $pregunta = null;
             if (!empty($resultado['pregunta_id'])) {
                 $pregunta = Preguntas::obtenerPorId((int)$resultado['pregunta_id']);
             }
-            return new Preguntas((int)$resultado['id'], $resultado['pregunta']);
+            return new Respuesta((int)$resultado['id'], $resultado['respuesta'], $pregunta ?? (int)$resultado['pregunta_id']);
         }
         return null;
-
     }
 
 
-    //GETTERS & SETTERS
+    // GETTERS & SETTERS
 
-
-    public function getId() {
+    public function getId(): ?int {
         return $this->id;
     }
 
-    public function getRespuesta() {
+    public function getRespuesta(): ?string {
         return $this->respuesta;
     }
 
-    public function getPreguntaId() {
+    public function getPregunta(): ?Preguntas {
+        return $this->pregunta;
+    }
+
+    public function getPreguntaId(): ?int {
         return $this->pregunta_id;
     }
 
@@ -75,11 +86,23 @@ class Respuesta {
         $this->id = $id;
     }
 
-    public function setPreguntaId(?string $pregunta_id) {
+    public function setPreguntaId(?int $pregunta_id) {
         $this->pregunta_id = $pregunta_id;
+        $this->pregunta = null;
+    }
+
+    public function setPregunta($pregunta) {
+        if ($pregunta instanceof Preguntas) {
+            $this->pregunta = $pregunta;
+            $this->pregunta_id = $pregunta->getId();
+        } else {
+            $this->pregunta = null;
+            $this->pregunta_id = is_numeric($pregunta) ? (int)$pregunta : null;
+        }
     }
 
     public function setRespuesta(?string $respuesta) {
         $this->respuesta = $respuesta;
     }
 }
+?>

@@ -2,27 +2,44 @@
 require_once("../../model/categoria.class.php");
 $categorias = Categoria::obtenerTodas();
 ?>
+<link rel="stylesheet" href="../../css/diseñoMenu.css">
+<link rel="stylesheet" href="../../css/cssSU/diseñoListar.css">
 
-<a href="formAltaCategoria.php">Nueva categoría</a>
+<main role="main" aria-labelledby="titulo-lista-categorias">
+  <h1 id="titulo-lista-categorias">Listado de categorías</h1>
+  <p id="desc-lista-categorias" class="sr-only">Tabla con categorías registradas.</p>
 
-<?php if ($categorias && count($categorias)) : ?>
-<table>
-    <tr><th>ID</th><th>Nombre</th><th>Acciones</th></tr>
-    <?php foreach ($categorias as $categoria) : ?>
-    <tr>
-        <td><?= $categoria['id'] ?></td>
-        <td><?= htmlspecialchars($categoria['nombre'], ENT_QUOTES, 'UTF-8') ?></td>
+  <div class="list-actions">
+    <a class="btn-primary" href="formAltaCategoria.php">Nueva categoría</a>
+  </div>
+
+  <table class="list-table" role="table" aria-describedby="desc-lista-categorias">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php if ($categorias && count($categorias)): foreach ($categorias as $cat): ?>
+      <tr>
+        <td><?= htmlspecialchars($cat['id']) ?></td>
+        <td><?= htmlspecialchars($cat['nombre']) ?></td>
         <td>
-            <a href="formEditarCategoria.php?id=<?= $categoria['id'] ?>">Editar</a>
-            <form action="../../controller/categoria.controller.php" method="POST" style="display:inline;">
-                <input type="hidden" name="operacion" value="eliminar">
-                <input type="hidden" name="id" value="<?= $categoria['id'] ?>">
-                <button type="submit" onclick="return confirm('¿Seguro que querés eliminar esta categoría?')">Eliminar</button>
-            </form>
+          <a class="link-action" href="formEditarCategoria.php?id=<?= urlencode($cat['id']) ?>">Editar</a>
+          <form class="inline-form" action="../../controller/categoria.controller.php" method="POST" onsubmit="return confirm('¿Seguro?')">
+            <input type="hidden" name="operacion" value="eliminar">
+            <input type="hidden" name="id" value="<?= htmlspecialchars($cat['id']) ?>">
+            <button class="btn-danger" type="submit">Eliminar</button>
+          </form>
         </td>
-    </tr>
-    <?php endforeach; ?>
-</table>
-<?php else: ?>
-<p>No hay categorías</p>
-<?php endif; ?>
+      </tr>
+      <?php endforeach; else: ?>
+      <tr><td colspan="3">No hay categorías</td></tr>
+      <?php endif; ?>
+    </tbody>
+  </table>
+</main>
+
+<footer role="contentinfo" aria-hidden="true"></footer>
